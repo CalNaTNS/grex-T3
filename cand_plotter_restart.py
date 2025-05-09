@@ -7,7 +7,7 @@ from datetime import datetime
 cand_plot_dir = "/hdd/data/candidates/T3/candplots/"
 target_service = "cand_plotter.service"
 logfile = "/home/user/grex/t3/GReX-T3/services/monitor_candidate.log"
-check_interval=60
+check_interval=60 # wait ### seconds for the next check 
 start_timing = 11 # Hour! 
 end_timing = 13 # Hour!
 
@@ -50,7 +50,7 @@ while True:
         else:
             logging.info("Monitoring, no new files yet. Waiting for a new candidate.")
 
-    # If no new file, restart at exactly 13:00
+    # If no new file, restart at exactly given ending time
     elif now.hour == end_timing and now.minute <= 2 and not already_restarted_today:
         logging.info(f"No new files detected before {end_timing}:00. Restarting service anyway.")
         os.system(f"sudo systemctl restart {target_service}")
