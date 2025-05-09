@@ -4,6 +4,8 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/python3 /home/user/grex/t3/GReX-T3/services/cand_plotter_restart.py
+Environment="POETRY_PROJECT_DIR"=/home/user/grex/t3/GReX-T3/grex_t3/
+WorkingDirectory=/home/user/grex/t3/GReX-T3/
 Restart=always
 User=user
 Group=user
