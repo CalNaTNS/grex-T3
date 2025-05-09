@@ -43,10 +43,14 @@ while True:
             logging.info(f"Detected new candidate files: {new_files}")
             time.sleep(check_interval*2)
             logging.info(f"Restarting service after the new candidate plotting complete: {target_service}")
-            os.system(f"sudo systemctl restart {target_service}")
-            already_restarted_today = True
-            new_file_detected = True
-            last_seen = current_files
+            exit_code = os.system(f"sudo /usr/bin/systemctl restart {target_service}")
+            if exit_code == 0:
+                logging.info(f"Successfully restarted service: {target_service}")
+                already_restarted_today = True
+                new_file_detected = True
+                last_seen = current_files
+            else:
+                logging.error(f"Failed to restart service {target_service}. Exit code: {exit_code}")
         else:
             logging.info("Monitoring, no new files yet. Waiting for a new candidate.")
 
