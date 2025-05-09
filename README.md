@@ -1,7 +1,7 @@
 # grex-T3
 Related code to GReX-T3
 
-To use this cand_plotter_restart.service and allow the Python script to restart the service, you have to update the sudoers file by
+To use this ````cand_plotter_restart.service``` and allow the Python script to restart the ```cand_plotter.service```, you have to update the sudoers file by
 1. Open the sudoers file by visudo
 ```
 sudo visudo
